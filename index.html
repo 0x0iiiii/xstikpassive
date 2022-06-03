@@ -75,13 +75,17 @@ $(document).ready(function() {
         ajax: 'https://raw.githubusercontent.com/0x0iiiii/xstikpassive/main/XSTIK_Rewards.json',
         pageLength: 100,
         order: [[2, 'desc']],
-
+        lengthMenu: [
+            [ 10, 25, 50, -1 ],
+            [ '10 rows', '25 rows', '50 rows', 'Show all' ]
+        ],
         dom: 'Bfrtip',
         buttons: [
+            'pageLength',
             'copyHtml5',
             'excelHtml5',
             'csvHtml5',
-            'pdfHtml5'
+            'pdfHtml5',
         ]        
     } );
 } );
