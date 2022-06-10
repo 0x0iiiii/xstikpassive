@@ -53,6 +53,8 @@
 														<th>Name</th>
 														<th>Tier</th>
 														<th>URL</th>
+														<th>Level</th>
+
 													</tr>
 												</thead>
 												<tfoot>
@@ -61,6 +63,7 @@
 														<th>Name</th>
 														<th>Tier</th>
 														<th>URL</th>
+														<th>Level</th>
 													</tr>
 												</tfoot>
 											</table>
@@ -73,8 +76,49 @@
 $(document).ready(function() {
     $('#table1').DataTable( {
         ajax: 'https://raw.githubusercontent.com/0x0iiiii/xstikpassive/main/XSTIK_Rewards.json',
+
+        columns: [
+                        { "data": "0" }, 
+                        { "data": "1" }, 
+                        { 
+                            "data": "2",
+                            "render": function(data, type, row, meta){
+                                if(type === 'display' && data == 'diamond_tier'){
+                                    data = 'Diamond';
+                                }
+                                else if(type === 'display' && data == 'legendary_tier'){
+                                    data = 'Legendary';
+                                }
+                                else if(type === 'display' && data == 'custom_tier'){
+                                    data = 'Custom';
+                                }
+                                else if(type === 'display' && data == 'epic_tier'){
+                                    data = 'Epic';
+                                }
+                                else if(type === 'display' && data == 'gold_token_tier'){
+                                    data = 'Gold_Token';
+                                }
+                            
+                                return data;
+                            }
+                        },
+                        
+                        { 
+                            "data": "3",
+                            "render": function(data, type, row, meta){
+                                if(type === 'display'){
+                                    data = '<a href="' + data + '" target="_blank">' + 'Sologenic Link' + '</a>';
+                                }
+                            
+                                return data;
+                            }
+                        },
+                        { "data": "4" }, 
+
+                    ],
+
         pageLength: 200,
-        order: [[2, 'desc']],
+        order: [[4, 'desc']],
         lengthMenu: [
             [ 10, 25, 50, -1 ],
             [ '10 rows', '25 rows', '50 rows', 'Show all' ]
